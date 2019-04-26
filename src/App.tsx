@@ -1,11 +1,15 @@
 import React, { Component } from 'react';
-
-const a: string = '2';
-
-console.log(123);
+import Layout from './layout/index';
+import TodoList from './page/todoList';
 class App extends Component {
   render() {
-    return <div>{a}</div>;
+    return (
+      <div className="App" style={{ height: '100vh' }}>
+        <Layout>
+          <TodoList />
+        </Layout>
+      </div>
+    );
   }
 }
 

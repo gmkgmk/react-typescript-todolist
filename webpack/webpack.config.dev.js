@@ -1,6 +1,7 @@
 const path = require('path');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin'); // 将 css 单独打包成文件
 
 module.exports = {
   mode: 'development',
@@ -41,6 +42,21 @@ module.exports = {
             loader: require.resolve('ts-loader'),
             options: {
               transpileOnly: true,
+            },
+          },
+        ],
+      },
+      {
+        test: /\.(less|css)$/,
+        use: [
+          {
+            loader: MiniCssExtractPlugin.loader,
+          },
+          'css-loader',
+          {
+            loader: require.resolve('less-loader'),
+            options: {
+              javascriptEnabled: true,
             },
           },
         ],
@@ -93,6 +109,10 @@ module.exports = {
       },
       filename: 'index.html', // 生成后的文件名
       template: path.join(__dirname, '..', 'public/index.html'), // 根据此模版生成 HTML 文件
+    }),
+    new MiniCssExtractPlugin({
+      filename: '[name].css',
+      chunkFilename: '[id].css',
     }),
   ],
 
