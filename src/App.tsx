@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
-let a = '1';
+
+const a: string = '2';
+
+console.log(123);
 class App extends Component {
-   render() {
-      return <div>demo</div>;
-   }
+  render() {
+    return <div>{a}</div>;
+  }
 }
 
 export default App;
