@@ -6,7 +6,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin'); // 将 css 单�
 module.exports = {
   mode: 'development',
   entry: {
-    vendors: ['react', 'react-dom'],
+    vendors: ['react', 'react-dom', 'redux-saga'],
     app: './src/index.tsx',
   },
   devtool: 'source-map', // 开启调试
@@ -64,6 +64,9 @@ module.exports = {
     ],
   },
   resolve: {
+    alias: {
+      '@': path.resolve(__dirname, '..', 'src'),
+    },
     extensions: ['.ts', '.tsx', '.js', '.jsx'],
   },
   optimization: {

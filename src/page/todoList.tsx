@@ -1,19 +1,7 @@
-import React from 'react';
+import * as React from 'react';
+import { connect } from 'react-redux';
 import { Table } from 'antd';
-const dataSource = [
-  {
-    key: '1',
-    name: '胡彦斌',
-    age: 32,
-    address: '西湖区湖底公园1号',
-  },
-  {
-    key: '2',
-    name: '胡彦祖',
-    age: 42,
-    address: '西湖区湖底公园1号',
-  },
-];
+const { useEffect } = React;
 
 const columns = [
   {
@@ -33,8 +21,21 @@ const columns = [
   },
 ];
 
-const TodoList = () => {
-  return <Table dataSource={dataSource} columns={columns} />;
+const TodoList = (props: any) => {
+  const { list } = props;
+  useEffect(() => {
+    const { dispatch } = props;
+    dispatch({ type: 'FETCH_LIST' });
+  }, []);
+
+  return <Table dataSource={list} columns={columns} />;
+};
+const mapStateToProps = (state: any) => {
+  const { todoList } = state;
+  return {
+    ...todoList,
+  };
 };
 
-export default TodoList;
+const TodoListPage = connect(mapStateToProps)(TodoList);
+export default TodoListPage;

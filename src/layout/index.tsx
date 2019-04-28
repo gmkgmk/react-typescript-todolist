@@ -1,15 +1,16 @@
-import React from 'react';
-import { Layout, Menu, Breadcrumb, Icon } from 'antd';
+// import React, { ReactChildren } from 'react';
+import * as React from 'react';
+import { Layout, Menu, Breadcrumb } from 'antd';
 
-const { SubMenu } = Menu;
+// const { SubMenu } = Menu;
 const { Header, Content, Sider } = Layout;
 interface ITodoListComponentProps {
-  children: [];
+  children: React.ReactChild | React.ReactChildren;
 }
 const LayoutComponent = (props: ITodoListComponentProps) => (
   <Layout style={{ height: '100%' }}>
     <Header className="header">
-      <div className="logo" />
+      <div style={{ color: '#fff' }}>后台管理系统</div>
     </Header>
     <Layout>
       <Sider width={200} style={{ background: '#fff' }}>
@@ -19,20 +20,8 @@ const LayoutComponent = (props: ITodoListComponentProps) => (
           defaultOpenKeys={['sub1']}
           style={{ height: '100%', borderRight: 0 }}
         >
-          <SubMenu
-            key="sub1"
-            title={
-              <span>
-                <Icon type="user" />
-                subnav 1
-              </span>
-            }
-          >
-            <Menu.Item key="1">option1</Menu.Item>
-            <Menu.Item key="2">option2</Menu.Item>
-            <Menu.Item key="3">option3</Menu.Item>
-            <Menu.Item key="4">option4</Menu.Item>
-          </SubMenu>
+          <Menu.Item key="1">待办事项</Menu.Item>
+          <Menu.Item key="2">待处理事项</Menu.Item>
         </Menu>
       </Sider>
       <Layout style={{ padding: '0 24px 24px' }}>
