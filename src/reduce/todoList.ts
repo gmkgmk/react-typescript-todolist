@@ -1,13 +1,14 @@
+// import { call, put } from 'redux-saga/effects';
 interface IActionType {
   type: string;
   payload: object;
 }
-interface IStateType {
-  list: [object?];
-}
-const initState: IStateType = {
-  list: [],
-};
+// interface IStateType {
+//   list: [object?];
+// }
+// const initState: IStateType = {
+//   list: [],
+// };
 
 const dataSource = [
   {
@@ -23,17 +24,26 @@ const dataSource = [
     address: '西湖区湖底公园1号',
   },
 ];
-
-export default (state = initState, action: IActionType): any => {
-  const { type, payload } = action;
-  console.log('payload: ', payload);
-  console.log('type: ', type);
-  switch (type) {
-    case 'FETCH_LIST':
+export default {
+  namespace: 'todoList',
+  state: {
+    list: [],
+  },
+  reducer: {
+    FETCH_LIST() {
       return {
         list: dataSource,
       };
-    default:
-      return state;
-  }
+    },
+  },
+  // effects: {
+  //   *fetchUser(action: IActionType) {
+  //     try {
+  //       const user = yield call(fetchUser, action.payload);
+  //       yield put({ type: 'USER_FETCH_SUCCEEDED', user: user });
+  //     } catch (e) {
+  //       yield put({ type: 'USER_FETCH_FAILED', message: e.message });
+  //     }
+  //   },
+  // },
 };

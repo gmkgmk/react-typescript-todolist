@@ -25,7 +25,7 @@ const TodoList = (props: any) => {
   const { list } = props;
   useEffect(() => {
     const { dispatch } = props;
-    dispatch({ type: 'FETCH_LIST' });
+    dispatch({ type: 'todoList/FETCH_LIST' });
   }, []);
 
   return <Table dataSource={list} columns={columns} />;
