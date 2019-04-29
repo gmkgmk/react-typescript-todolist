@@ -7,7 +7,7 @@ const { Header, Content, Sider } = Layout;
 interface ITodoListComponentProps {
   children: React.ReactChild | React.ReactChildren;
 }
-const LayoutComponent = (props: ITodoListComponentProps) => (
+const LayoutComponent = (props: ITodoListComponentProps): React.ReactNode => (
   <Layout style={{ height: '100%' }}>
     <Header className="header">
       <div style={{ color: '#fff' }}>后台管理系统</div>

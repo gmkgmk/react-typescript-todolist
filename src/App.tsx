@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Layout from './layout/index';
 import TodoList from './page/todoList';
 class App extends Component {
-  render() {
+  public render(): any {
     return (
       <div className="App" style={{ height: '100vh' }}>
         <Layout>

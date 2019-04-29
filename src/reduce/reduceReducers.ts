@@ -1,43 +1,17 @@
-import * as redux from 'redux';
-console.log('redux: ', redux);
-const NAMESPACE_SEP: string = '/';
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { IReducerType, IActionType, IPrefix, IModel } from './types';
 
-interface IActionType {
-  type: string;
-  payload: object;
-  rest?: any[];
-}
-interface prefixFunc {
-  string?: object;
-}
-interface IPrefix {
-  namespace: Readonly<string>;
-  reducer: {
-    [key: string]: redux.Reducer;
-  };
-}
-
+const NAMESPACE_SEP = '/';
 // 添加前缀
-function prefix({ namespace, reducer }: IPrefix): prefixFunc {
-  return Object.keys(reducer).reduce(
-    (memo: { [key: string]: redux.Reducer }, key: string) => {
-      const newKey: string = `${namespace}${NAMESPACE_SEP}${key}`;
+function prefix({ namespace, reducer }: IPrefix): { string?: object } {
+  return Object.keys(reducer).reduce((memo: IReducerType, key: string) => {
+    const newKey: string = `${namespace}${NAMESPACE_SEP}${key}`;
 
-      memo[newKey] = reducer[key];
-      return memo;
-    },
-    {}
-  );
+    memo[newKey] = reducer[key];
+    return memo;
+  }, {});
 }
 
-interface IModel {
-  namespace: string;
-  state: object;
-  reducer: {
-    [key: string]: redux.Reducer;
-  };
-  [key: string]: any;
-}
 // 生成reducer
 const reducerHandle = (model: IModel) => {
   const reducers: any = prefix(model);
@@ -48,8 +22,8 @@ const reducerHandle = (model: IModel) => {
   };
 };
 
-export default (obj: IModel) => {
-  return Object.keys(obj).reduce((p: any, r: string) => {
+export default (obj: { [key: string]: any }) => {
+  return Object.keys(obj).reduce((p, r: string) => {
     obj[r] = reducerHandle(obj[r]);
     return obj;
   }, {});

@@ -1,14 +1,14 @@
-// import { call, put } from 'redux-saga/effects';
+import { put, delay } from 'redux-saga';
 interface IActionType {
   type: string;
   payload: object;
 }
-// interface IStateType {
-//   list: [object?];
-// }
-// const initState: IStateType = {
-//   list: [],
-// };
+interface IStateType {
+  list: [object?];
+}
+const initState: IStateType = {
+  list: [],
+};
 
 const dataSource = [
   {
@@ -26,9 +26,7 @@ const dataSource = [
 ];
 export default {
   namespace: 'todoList',
-  state: {
-    list: [],
-  },
+  state: initState,
   reducer: {
     FETCH_LIST() {
       return {
@@ -36,14 +34,11 @@ export default {
       };
     },
   },
-  // effects: {
-  //   *fetchUser(action: IActionType) {
-  //     try {
-  //       const user = yield call(fetchUser, action.payload);
-  //       yield put({ type: 'USER_FETCH_SUCCEEDED', user: user });
-  //     } catch (e) {
-  //       yield put({ type: 'USER_FETCH_FAILED', message: e.message });
-  //     }
-  //   },
-  // },
+  effects: {
+    *fetchUser(action: IActionType) {
+      console.log('action: ', action);
+      yield delay(1000);
+      yield put({ type: 'INCREMENT' });
+    },
+  },
 };
