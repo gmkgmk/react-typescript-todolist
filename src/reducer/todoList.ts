@@ -1,4 +1,4 @@
-import { put, delay } from 'redux-saga';
+import { put, delay } from 'redux-saga/effects';
 interface IActionType {
   type: string;
   payload: object;
@@ -36,9 +36,8 @@ export default {
   },
   effects: {
     *fetchUser(action: IActionType) {
-      console.log('action: ', action);
       yield delay(1000);
-      yield put({ type: 'INCREMENT' });
+      yield put({ type: 'todoList/FETCH_LIST' });
     },
   },
 };

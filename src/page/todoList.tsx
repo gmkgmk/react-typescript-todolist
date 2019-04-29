@@ -22,11 +22,10 @@ const columns = [
 ];
 
 const TodoList = (props: any) => {
-  const { list } = props;
+  const { list, dispatch } = props;
   useEffect(() => {
-    const { dispatch } = props;
-    dispatch({ type: 'todoList/FETCH_LIST' });
-  }, [props]);
+    dispatch({ type: 'fetchUser' });
+  }, [dispatch]);
 
   return <Table dataSource={list} columns={columns} />;
 };

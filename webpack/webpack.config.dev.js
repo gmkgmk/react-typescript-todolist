@@ -22,6 +22,7 @@ module.exports = {
         test: /\.(js|jsx|tsx|ts)$/,
         loader: 'eslint-loader',
         enforce: 'pre',
+        exclude: /node_modules/,
         include: [path.resolve(__dirname, '..', 'src')], // 指定检查的目录
         options: {
           // 这里的配置项参数将会被传递到 eslint 的 CLIEngine
@@ -68,7 +69,7 @@ module.exports = {
     alias: {
       '@': path.resolve(__dirname, '..', 'src'),
     },
-    extensions: ['.ts', '.tsx', '.js', '.jsx', '.d.ts'],
+    extensions: ['.ts', '.tsx', '.js', '.jsx', '.json'],
   },
   optimization: {
     splitChunks: {

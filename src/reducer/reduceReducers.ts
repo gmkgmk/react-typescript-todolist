@@ -18,7 +18,8 @@ const reducerHandle = (model: IModel) => {
   const { state: initSate } = model;
   return (state: object = {}, action: IActionType): (() => {}) => {
     const { type, payload, ...rest } = action;
-    return reducers[type] ? reducers[type](state, payload, ...rest) : initSate;
+    console.info('reduce-type: ', type);
+    return reducers[type] ? reducers[type](state, payload, rest) : initSate;
   };
 };
 
