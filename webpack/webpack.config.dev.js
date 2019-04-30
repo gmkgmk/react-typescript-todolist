@@ -68,6 +68,7 @@ module.exports = {
   resolve: {
     alias: {
       '@': path.resolve(__dirname, '..', 'src'),
+      '@utils': path.resolve(__dirname, '..', 'src/utils'),
     },
     extensions: ['.ts', '.tsx', '.js', '.jsx', '.json'],
   },
@@ -128,8 +129,8 @@ module.exports = {
     overlay: true, // 如果代码出错，会在浏览器页面弹出“浮动层”。类似于 vue-cli 等脚手架
     proxy: {
       // 跨域代理转发
-      '/comments': {
-        target: 'https://m.weibo.cn',
+      '/api': {
+        target: 'http://localhost:3000',
         changeOrigin: true,
         logLevel: 'debug',
         headers: {

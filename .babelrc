@@ -16,6 +16,5 @@
       { "libraryName": "antd", "libraryDirectory": "es", "style": true },
       "ant"
     ]
-  ],
-
+  ]
 }

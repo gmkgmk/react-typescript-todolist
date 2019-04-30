@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Layout from './layout/index';
-import TodoList from './page/todoList';
+import TodoList from './pages/todoList/index';
 class App extends Component {
   public render(): React.ReactNode {
     return (

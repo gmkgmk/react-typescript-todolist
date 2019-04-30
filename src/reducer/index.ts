@@ -1,11 +1,4 @@
-import todoList from './todoList';
-import { combineReducers } from 'redux';
-import reduceReducers from './reduceReducers';
-
-const reducerMap = reduceReducers({
+import todoList from '../pages/todoList/model';
+export default {
   todoList,
-});
-
-const rootReducer = combineReducers(reducerMap);
-
-export default rootReducer;
+};

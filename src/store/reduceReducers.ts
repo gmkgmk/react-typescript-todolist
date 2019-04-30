@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { IReducerType, IActionType, IPrefix, IModel } from './types';
+import { combineReducers } from 'redux';
 
 const NAMESPACE_SEP = '/';
 // 添加前缀
@@ -23,9 +24,14 @@ const reducerHandle = (model: IModel) => {
   };
 };
 
-export default (obj: { [key: string]: any }) => {
+const reduceReducers = (obj: { [key: string]: any }) => {
   return Object.keys(obj).reduce((p, r: string) => {
-    obj[r] = reducerHandle(obj[r]);
-    return obj;
+    p[r] = reducerHandle(obj[r]);
+    return p;
   }, {});
 };
+
+const rootReducer = (reducerMap: any) =>
+  combineReducers(reduceReducers(reducerMap));
+
+export default rootReducer;
