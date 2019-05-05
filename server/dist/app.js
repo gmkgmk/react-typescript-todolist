@@ -94,19 +94,43 @@
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var koa__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! koa */ \"koa\");\n/* harmony import */ var koa__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(koa__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var koa_logger__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! koa-logger */ \"koa-logger\");\n/* harmony import */ var koa_logger__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(koa_logger__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var koa_bodyparser__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! koa-bodyparser */ \"koa-bodyparser\");\n/* harmony import */ var koa_bodyparser__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(koa_bodyparser__WEBPACK_IMPORTED_MODULE_2__);\n/* harmony import */ var koa_json__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! koa-json */ \"koa-json\");\n/* harmony import */ var koa_json__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(koa_json__WEBPACK_IMPORTED_MODULE_3__);\n/* harmony import */ var _server_route__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./server/route */ \"../server/route/index.ts\");\n// const Koa =\n\n\n\n\n\nvar app = new koa__WEBPACK_IMPORTED_MODULE_0___default.a();\nvar port = 3000;\napp.use(koa_logger__WEBPACK_IMPORTED_MODULE_1___default()());\napp.use(koa_bodyparser__WEBPACK_IMPORTED_MODULE_2___default()({}));\napp.use(koa_json__WEBPACK_IMPORTED_MODULE_3___default()({}));\napp.use(_server_route__WEBPACK_IMPORTED_MODULE_4__[\"default\"].routes()).use(_server_route__WEBPACK_IMPORTED_MODULE_4__[\"default\"].allowedMethods()); // app.use(historyApiFallback());\n\napp.listen(port, function () {\n  console.log(\"app is listening at porn \".concat(port, \"!\"));\n});\n\n//# sourceURL=webpack:///../app.ts?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var koa__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! koa */ \"koa\");\n/* harmony import */ var koa__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(koa__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var koa_logger__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! koa-logger */ \"koa-logger\");\n/* harmony import */ var koa_logger__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(koa_logger__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var koa_bodyparser__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! koa-bodyparser */ \"koa-bodyparser\");\n/* harmony import */ var koa_bodyparser__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(koa_bodyparser__WEBPACK_IMPORTED_MODULE_2__);\n/* harmony import */ var koa_json__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! koa-json */ \"koa-json\");\n/* harmony import */ var koa_json__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(koa_json__WEBPACK_IMPORTED_MODULE_3__);\n/* harmony import */ var kcors__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! kcors */ \"kcors\");\n/* harmony import */ var kcors__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(kcors__WEBPACK_IMPORTED_MODULE_4__);\n/* harmony import */ var _server_route__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./server/route */ \"../server/route/index.ts\");\n// const Koa =\n\n\n\n\n\n\nvar app = new koa__WEBPACK_IMPORTED_MODULE_0___default.a();\napp.use(kcors__WEBPACK_IMPORTED_MODULE_4___default()());\nvar port = 3000;\napp.use(koa_logger__WEBPACK_IMPORTED_MODULE_1___default()());\napp.use(koa_bodyparser__WEBPACK_IMPORTED_MODULE_2___default()({}));\napp.use(koa_json__WEBPACK_IMPORTED_MODULE_3___default()({}));\napp.use(_server_route__WEBPACK_IMPORTED_MODULE_5__[\"default\"].routes()).use(_server_route__WEBPACK_IMPORTED_MODULE_5__[\"default\"].allowedMethods()); // app.use(historyApiFallback());\n\napp.listen(port, function () {\n  console.log(\"app is listening at porn \".concat(port, \"!\"));\n});\n\n//# sourceURL=webpack:///../app.ts?");
 
 /***/ }),
 
-/***/ "../server/controller/todoListController.ts":
-/*!**************************************************!*\
-  !*** ../server/controller/todoListController.ts ***!
-  \**************************************************/
-/*! exports provided: getTodoList */
+/***/ "../server/controller/todoList.ts":
+/*!****************************************!*\
+  !*** ../server/controller/todoList.ts ***!
+  \****************************************/
+/*! exports provided: getTodoList, createList */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"getTodoList\", function() { return getTodoList; });\n/* harmony import */ var core_js_modules_es_object_to_string__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/es.object.to-string */ \"core-js/modules/es.object.to-string\");\n/* harmony import */ var core_js_modules_es_object_to_string__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_object_to_string__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var core_js_modules_es_promise__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! core-js/modules/es.promise */ \"core-js/modules/es.promise\");\n/* harmony import */ var core_js_modules_es_promise__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_promise__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime/regenerator */ \"@babel/runtime/regenerator\");\n/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2__);\n/* harmony import */ var regenerator_runtime_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! regenerator-runtime/runtime */ \"regenerator-runtime/runtime\");\n/* harmony import */ var regenerator_runtime_runtime__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(regenerator_runtime_runtime__WEBPACK_IMPORTED_MODULE_3__);\n\n\n\n\n\nvar _this = undefined;\n\n// 获取列表\nvar __awaiter = undefined && undefined.__awaiter || function (thisArg, _arguments, P, generator) {\n  return new (P || (P = Promise))(function (resolve, reject) {\n    function fulfilled(value) {\n      try {\n        step(generator.next(value));\n      } catch (e) {\n        reject(e);\n      }\n    }\n\n    function rejected(value) {\n      try {\n        step(generator[\"throw\"](value));\n      } catch (e) {\n        reject(e);\n      }\n    }\n\n    function step(result) {\n      result.done ? resolve(result.value) : new P(function (resolve) {\n        resolve(result.value);\n      }).then(fulfilled, rejected);\n    }\n\n    step((generator = generator.apply(thisArg, _arguments || [])).next());\n  });\n};\n\nvar dataSource = [{\n  key: '1',\n  name: '胡彦斌',\n  age: 32,\n  address: '西湖区湖底公园1号'\n}, {\n  key: '2',\n  name: '胡彦祖',\n  age: 42,\n  address: '西湖区湖底公园1号'\n}];\nvar getTodoList = function getTodoList(ctx) {\n  return __awaiter(_this, void 0, void 0,\n  /*#__PURE__*/\n  _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default.a.mark(function _callee() {\n    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default.a.wrap(function _callee$(_context) {\n      while (1) {\n        switch (_context.prev = _context.next) {\n          case 0:\n            ctx.body = dataSource;\n\n          case 1:\n          case \"end\":\n            return _context.stop();\n        }\n      }\n    }, _callee);\n  }));\n};\n\n//# sourceURL=webpack:///../server/controller/todoListController.ts?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"getTodoList\", function() { return getTodoList; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"createList\", function() { return createList; });\n/* harmony import */ var core_js_modules_es_object_to_string__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/es.object.to-string */ \"core-js/modules/es.object.to-string\");\n/* harmony import */ var core_js_modules_es_object_to_string__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_object_to_string__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var core_js_modules_es_promise__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! core-js/modules/es.promise */ \"core-js/modules/es.promise\");\n/* harmony import */ var core_js_modules_es_promise__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_promise__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime/regenerator */ \"@babel/runtime/regenerator\");\n/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2__);\n/* harmony import */ var regenerator_runtime_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! regenerator-runtime/runtime */ \"regenerator-runtime/runtime\");\n/* harmony import */ var regenerator_runtime_runtime__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(regenerator_runtime_runtime__WEBPACK_IMPORTED_MODULE_3__);\n/* harmony import */ var _utils_response__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../utils/response */ \"../server/utils/response.ts\");\n/* harmony import */ var _models_todoList__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./../models/todoList */ \"../server/models/todoList.ts\");\n\n\n\n\n\nvar _this = undefined;\n\nvar __awaiter = undefined && undefined.__awaiter || function (thisArg, _arguments, P, generator) {\n  return new (P || (P = Promise))(function (resolve, reject) {\n    function fulfilled(value) {\n      try {\n        step(generator.next(value));\n      } catch (e) {\n        reject(e);\n      }\n    }\n\n    function rejected(value) {\n      try {\n        step(generator[\"throw\"](value));\n      } catch (e) {\n        reject(e);\n      }\n    }\n\n    function step(result) {\n      result.done ? resolve(result.value) : new P(function (resolve) {\n        resolve(result.value);\n      }).then(fulfilled, rejected);\n    }\n\n    step((generator = generator.apply(thisArg, _arguments || [])).next());\n  });\n}; // 获取列表\n\n\n\n\nvar getTodoList = function getTodoList(ctx) {\n  return __awaiter(_this, void 0, void 0,\n  /*#__PURE__*/\n  _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default.a.mark(function _callee() {\n    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default.a.wrap(function _callee$(_context) {\n      while (1) {\n        switch (_context.prev = _context.next) {\n          case 0:\n            Object(_utils_response__WEBPACK_IMPORTED_MODULE_4__[\"response\"])(ctx, {\n              data: Object(_models_todoList__WEBPACK_IMPORTED_MODULE_5__[\"findAllList\"])()\n            });\n\n          case 1:\n          case \"end\":\n            return _context.stop();\n        }\n      }\n    }, _callee);\n  }));\n};\nvar createList = function createList(ctx) {\n  return __awaiter(_this, void 0, void 0,\n  /*#__PURE__*/\n  _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default.a.mark(function _callee2() {\n    var content, success;\n    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default.a.wrap(function _callee2$(_context2) {\n      while (1) {\n        switch (_context2.prev = _context2.next) {\n          case 0:\n            console.log('ctx: ', ctx.request.body); // const rules = yup.object().shape({\n            //   content: yup.string().required(),\n            // });\n\n            content = ctx.request.body.content;\n            success = Object(_models_todoList__WEBPACK_IMPORTED_MODULE_5__[\"createTodoList\"])(content);\n            Object(_utils_response__WEBPACK_IMPORTED_MODULE_4__[\"response\"])(ctx, {\n              data: success\n            }, success);\n\n          case 4:\n          case \"end\":\n            return _context2.stop();\n        }\n      }\n    }, _callee2);\n  }));\n};\n\n//# sourceURL=webpack:///../server/controller/todoList.ts?");
+
+/***/ }),
+
+/***/ "../server/db/index.ts":
+/*!*****************************!*\
+  !*** ../server/db/index.ts ***!
+  \*****************************/
+/*! exports provided: todoList */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"todoList\", function() { return todoList; });\nvar todoList = [];\n\n//# sourceURL=webpack:///../server/db/index.ts?");
+
+/***/ }),
+
+/***/ "../server/models/todoList.ts":
+/*!************************************!*\
+  !*** ../server/models/todoList.ts ***!
+  \************************************/
+/*! exports provided: createTodoList, findAllList */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"createTodoList\", function() { return createTodoList; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"findAllList\", function() { return findAllList; });\n/* harmony import */ var _schema_todoList__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../schema/todoList */ \"../server/schema/todoList.ts\");\n/* harmony import */ var _db_index__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./../db/index */ \"../server/db/index.ts\");\n\n\nvar createTodoList = function createTodoList(content) {\n  var result = Object(_schema_todoList__WEBPACK_IMPORTED_MODULE_0__[\"todoListModel\"])(content);\n  _db_index__WEBPACK_IMPORTED_MODULE_1__[\"todoList\"].push(result);\n  console.log('todoList: ', _db_index__WEBPACK_IMPORTED_MODULE_1__[\"todoList\"]);\n  return true;\n};\nvar findAllList = function findAllList() {\n  return _db_index__WEBPACK_IMPORTED_MODULE_1__[\"todoList\"];\n};\n\n//# sourceURL=webpack:///../server/models/todoList.ts?");
 
 /***/ }),
 
@@ -118,7 +142,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) *
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var koa_router__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! koa-router */ \"koa-router\");\n/* harmony import */ var koa_router__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(koa_router__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _todolist__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./todolist */ \"../server/route/todolist.ts\");\n\n\n\n\nvar Router = new koa_router__WEBPACK_IMPORTED_MODULE_0___default.a({\n  prefix: '/api'\n}); // 用户模块\n\nRouter.use('/todoList', _todolist__WEBPACK_IMPORTED_MODULE_1__[\"default\"].routes(), _todolist__WEBPACK_IMPORTED_MODULE_1__[\"default\"].allowedMethods());\n/* harmony default export */ __webpack_exports__[\"default\"] = (Router);\n\n//# sourceURL=webpack:///../server/route/index.ts?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var koa_router__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! koa-router */ \"koa-router\");\n/* harmony import */ var koa_router__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(koa_router__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _todolist__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./todolist */ \"../server/route/todolist.ts\");\n\n\n\n\nvar Router = new koa_router__WEBPACK_IMPORTED_MODULE_0___default.a({\n  prefix: '/api'\n}); // todoList模块\n\nRouter.use('/todoList', _todolist__WEBPACK_IMPORTED_MODULE_1__[\"default\"].routes(), _todolist__WEBPACK_IMPORTED_MODULE_1__[\"default\"].allowedMethods());\n/* harmony default export */ __webpack_exports__[\"default\"] = (Router);\n\n//# sourceURL=webpack:///../server/route/index.ts?");
 
 /***/ }),
 
@@ -130,7 +154,31 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var koa_
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _controller_todoListController__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../controller/todoListController */ \"../server/controller/todoListController.ts\");\n/**\n * 子路由:todolist;\n */\n\n\nvar router = __webpack_require__(/*! koa-router */ \"koa-router\")();\n\nvar routers = router.get('/list', _controller_todoListController__WEBPACK_IMPORTED_MODULE_0__[\"getTodoList\"]);\n/* harmony default export */ __webpack_exports__[\"default\"] = (routers);\n\n//# sourceURL=webpack:///../server/route/todolist.ts?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _controller_todoList__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../controller/todoList */ \"../server/controller/todoList.ts\");\n/* harmony import */ var koa_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! koa-router */ \"koa-router\");\n/* harmony import */ var koa_router__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(koa_router__WEBPACK_IMPORTED_MODULE_1__);\n/**\n * 子路由:todolist;\n */\n\n\nvar router = koa_router__WEBPACK_IMPORTED_MODULE_1___default()();\nvar routers = router.get('/list', _controller_todoList__WEBPACK_IMPORTED_MODULE_0__[\"getTodoList\"]).post('/add', _controller_todoList__WEBPACK_IMPORTED_MODULE_0__[\"createList\"]);\n/* harmony default export */ __webpack_exports__[\"default\"] = (routers);\n\n//# sourceURL=webpack:///../server/route/todolist.ts?");
+
+/***/ }),
+
+/***/ "../server/schema/todoList.ts":
+/*!************************************!*\
+  !*** ../server/schema/todoList.ts ***!
+  \************************************/
+/*! exports provided: todoListEnum, todoListModel */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"todoListEnum\", function() { return todoListEnum; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"todoListModel\", function() { return todoListModel; });\nvar _id = 0;\n/**\n * 0:开始\n * 1:正在进行\n * 2:结束`\n */\n\nvar todoListEnum;\n\n(function (todoListEnum) {\n  todoListEnum[todoListEnum[\"Start\"] = 0] = \"Start\";\n  todoListEnum[todoListEnum[\"Doing\"] = 1] = \"Doing\";\n  todoListEnum[todoListEnum[\"Done\"] = 2] = \"Done\";\n})(todoListEnum || (todoListEnum = {}));\n/**\n *\n *\n * @param {*} content\n * @param {*} status\n * @returns {ITodoList}\n */\n\n\nvar todoListModel = function todoListModel(content) {\n  var id = _id++;\n  return {\n    id: id,\n    content: content,\n    status: todoListEnum.Start\n  };\n};\n\n//# sourceURL=webpack:///../server/schema/todoList.ts?");
+
+/***/ }),
+
+/***/ "../server/utils/response.ts":
+/*!***********************************!*\
+  !*** ../server/utils/response.ts ***!
+  \***********************************/
+/*! exports provided: response */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"response\", function() { return response; });\n/**\n *\n *\n * @date 2019-05-05\n * @export\n * @param {Koa.Context} ctx\n * @param {Response} [result={}]\n * @param {boolean} [success=true]\n * @param {number} [status=200]\n */\nfunction response(ctx) {\n  var result = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};\n  var success = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : true;\n  var status = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 200;\n  ctx.body = {\n    success: success,\n    status: status,\n    result: result\n  };\n}\n\n//# sourceURL=webpack:///../server/utils/response.ts?");
 
 /***/ }),
 
@@ -175,6 +223,17 @@ eval("module.exports = require(\"core-js/modules/es.object.to-string\");\n\n//# 
 /***/ (function(module, exports) {
 
 eval("module.exports = require(\"core-js/modules/es.promise\");\n\n//# sourceURL=webpack:///external_%22core-js/modules/es.promise%22?");
+
+/***/ }),
+
+/***/ "kcors":
+/*!************************!*\
+  !*** external "kcors" ***!
+  \************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+eval("module.exports = require(\"kcors\");\n\n//# sourceURL=webpack:///external_%22kcors%22?");
 
 /***/ }),
 

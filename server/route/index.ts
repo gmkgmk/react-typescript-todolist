@@ -1,12 +1,12 @@
 'use strict';
 
-import router from 'koa-router';
+import KoaRouter from 'koa-router';
 import todoList from './todolist';
 
-const Router = new router({
+const Router = new KoaRouter({
   prefix: '/api',
 });
-// 用户模块
+// todoList模块
 Router.use('/todoList', todoList.routes(), todoList.allowedMethods());
 
 export default Router;

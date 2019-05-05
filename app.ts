@@ -3,8 +3,11 @@ import Koa from 'koa';
 import logger from 'koa-logger';
 import koaBodyparser from 'koa-bodyparser';
 import json from 'koa-json';
+import kcors from 'kcors';
+
 import Router from './server/route';
 const app = new Koa();
+app.use(kcors());
 let port = 3000;
 app.use(logger());
 app.use(koaBodyparser({}));
