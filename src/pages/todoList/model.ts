@@ -6,9 +6,11 @@ interface IActionType {
 }
 interface IStateType {
   list: [object?];
+  statusEnum: [object?];
 }
 const initState: IStateType = {
   list: [],
+  statusEnum: [],
 };
 
 export default {
@@ -16,20 +18,43 @@ export default {
   state: initState,
   reducer: {
     FETCH_LIST(state: any, payload: any) {
+      console.log('payload: ', payload);
       const { list } = payload;
+
       return {
         list,
       };
     },
+    save(state: any, payload: any) {
+      return {
+        ...state,
+        ...payload,
+      };
+    },
   },
   effects: {
-    *fetchUser(action: IActionType) {
-      const result = yield call(api.list);
-
+    *fetchList(action: IActionType) {
+      const { result } = yield call(api.list);
+      const { data } = result;
+      console.log('data: ', data);
       yield put({
-        type: 'todoList/FETCH_LIST',
+        type: 'FETCH_LIST',
         payload: {
-          list: result,
+          list: data,
+        },
+      });
+    },
+    *putTodoList(action: IActionType) {
+      const { result } = yield call(api.addList);
+      console.log('result: ', result);
+    },
+    *fetchStatusEnum() {
+      const { result } = yield call(api.getStatusEnum);
+      const { data } = result;
+      yield put({
+        type: 'save',
+        payload: {
+          statusEnum: data,
         },
       });
     },

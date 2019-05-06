@@ -16,11 +16,15 @@ function prefix({ namespace, reducer }: IPrefix): { string?: object } {
 // 生成reducer
 const reducerHandle = (model: IModel) => {
   const reducers: any = prefix(model);
-  const { state: initSate } = model;
+  const { state: initSate, namespace } = model;
   return (state: object = {}, action: IActionType): (() => {}) => {
     const { type, payload, ...rest } = action;
-    console.info('reduce-type: ', type);
-    return reducers[type] ? reducers[type](state, payload, rest) : initSate;
+
+    const prefixType = `${namespace}${NAMESPACE_SEP}${type}`;
+    console.info('namespace/reduce: ', prefixType);
+    // 调用时先查看自己model是否有
+    const reduce = reducers[prefixType] ? reducers[prefixType] : reducers[type];
+    return reduce ? reduce(state, payload, rest) : initSate;
   };
 };
 

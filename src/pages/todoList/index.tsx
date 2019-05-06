@@ -1,40 +1,11 @@
 import * as React from 'react';
-import { connect } from 'react-redux';
-import { Table } from 'antd';
-const { useEffect } = React;
-
-const columns = [
-  {
-    title: '姓名',
-    dataIndex: 'name',
-    key: 'name',
-  },
-  {
-    title: '年龄',
-    dataIndex: 'age',
-    key: 'age',
-  },
-  {
-    title: '住址',
-    dataIndex: 'address',
-    key: 'address',
-  },
-];
-
-const TodoList = (props: any) => {
-  const { list, dispatch } = props;
-  useEffect(() => {
-    dispatch({ type: 'fetchUser' });
-  }, [dispatch]);
-
-  return <Table dataSource={list} columns={columns} />;
+import TodoListTable from './todoListTable';
+import TodoListForm from './todoListForm';
+export default () => {
+  return (
+    <>
+      <TodoListForm />
+      <TodoListTable />
+    </>
+  );
 };
-const mapStateToProps = (state: any) => {
-  const { todoList } = state;
-  return {
-    ...todoList,
-  };
-};
-
-const TodoListPage = connect(mapStateToProps)(TodoList);
-export default TodoListPage;

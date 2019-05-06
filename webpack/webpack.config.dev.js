@@ -10,7 +10,7 @@ module.exports = {
     vendors: ['react', 'react-dom', 'redux-saga'],
     app: './src/index.tsx',
   },
-  devtool: 'source-map', // 开启调试
+  devtool: 'cheap-module-eval-source-maps', // 开启调试
   output: {
     filename: '[name].bundle.js', // 代码打包后的文件名
     chunkFilename: '[name].js', // 代码拆分后的文件名
