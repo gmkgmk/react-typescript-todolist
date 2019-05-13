@@ -1,4 +1,4 @@
-import todoList from '../pages/todoList/model';
+import todoList from '../pages/todoList/reducer';
 export default {
   todoList,
 };

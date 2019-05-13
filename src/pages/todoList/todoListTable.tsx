@@ -7,8 +7,8 @@ const { useEffect } = React;
 const TodoListTable = React.memo((props: any) => {
   const { list, dispatch, statusEnum } = props;
   useEffect(() => {
-    dispatch({ type: 'fetchList' });
-    dispatch({ type: 'fetchStatusEnum' });
+    dispatch({ type: 'FETCH_DATA_LIST' });
+    dispatch({ type: 'ENUM_STATUS' });
   }, [dispatch]);
 
   const columns = [
