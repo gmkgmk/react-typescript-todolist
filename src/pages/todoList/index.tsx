@@ -1,6 +1,6 @@
 import * as React from 'react';
-import TodoListTable from './todoListTable';
-import TodoListForm from './todoListForm';
+import TodoListTable from './components/todoListTable';
+import TodoListForm from './components/todoListForm';
 export default () => {
   return (
     <>

@@ -1,4 +1,4 @@
-import { put, call, takeEvery } from 'redux-saga/effects';
+import { put, call, takeEvery, takeLatest } from 'redux-saga/effects';
 import api from './services';
 interface IActionType {
   type: string;
@@ -8,7 +8,6 @@ interface IActionType {
 function* fetchList() {
   const { result } = yield call(api.list);
   const { data } = result;
-  console.log('data: ', data);
   yield put({
     type: 'FETCH_LIST',
     payload: {
@@ -18,8 +17,7 @@ function* fetchList() {
 }
 
 function* putTodoList(action: IActionType) {
-  const { result } = yield call(api.addList);
-  console.log('result: ', result);
+  yield call(api.addList);
 }
 
 function* fetchStatusEnum() {
@@ -38,7 +36,7 @@ export function* watchTodoList() {
 }
 
 export function* addList() {
-  yield takeEvery('PUT_TODO_LIST', putTodoList);
+  yield takeLatest('PUT_TODO_LIST', putTodoList);
 }
 
 export function* statusEnum() {
