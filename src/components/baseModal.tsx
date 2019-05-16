@@ -14,6 +14,8 @@ interface IModelProps {
   closable?: boolean;
   footer?: [React.ReactNode] | null;
   width?: string | number;
+  handleOk?: (close: () => void) => {};
+  handleCancel?: (close: () => void) => {};
 }
 
 export default memo((props: IModelProps) => {
@@ -26,20 +28,35 @@ export default memo((props: IModelProps) => {
     closable = false,
     footer,
     width = 520,
+    handleOk,
+    handleCancel,
   } = props;
   const [visible, toggleVisible] = useState(false);
-  const handleOk = () => {
-    console.log(modalEL);
-    toggleVisible(false);
+  const close = () => toggleVisible(false);
+  const handleOkFunc = () => {
+    if (handleOk) {
+      handleOk(close);
+    } else {
+      close();
+    }
   };
-  const handleCancel = () => {
-    toggleVisible(false);
+  const handleCancelHandle = () => {
+    if (handleCancel) {
+      handleCancel(close);
+    } else {
+      close();
+    }
   };
   const defaultFooter = [
-    <Button key="back" onClick={handleCancel}>
+    <Button key="back" onClick={handleCancelHandle}>
       取消
     </Button>,
-    <Button key="submit" type="primary" loading={loading} onClick={handleOk}>
+    <Button
+      key="submit"
+      type="primary"
+      loading={loading}
+      onClick={handleOkFunc}
+    >
       确认
     </Button>,
   ];
@@ -60,7 +77,7 @@ export default memo((props: IModelProps) => {
         title={title}
         visible={visible}
         onOk={handleOk}
-        onCancel={handleCancel}
+        onCancel={handleCancelHandle}
         ref={modalEL}
       >
         {React.Children.only(children)}

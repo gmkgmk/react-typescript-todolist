@@ -1,23 +1,47 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-import AddButton from './addModel';
-import { Input } from 'antd';
-const TodoListForm = (props: any) => {
-  console.log('props: ', props);
-  // const { dispatch } = props;
-  // const addList = async () => {
-  //   await dispatch({ type: 'PUT_TODO_LIST' });
-  //   dispatch({ type: 'FETCH_DATA_LIST' });
-  // };
+import BaseModal from '@/components/baseModal';
+import { Input, message } from 'antd';
+const { memo, useState } = React;
+
+const TodoListForm = memo((props: any) => {
+  const [inputValue, changeInputValue] = useState('');
+  const { dispatch } = props;
+
+  const addList = async (value: string) => {
+    const result = await dispatch({
+      type: 'PUT_TODO_LIST',
+      payload: {
+        value,
+      },
+    });
+    console.log('result: ', result);
+  };
+
+  const onChange = (event: React.BaseSyntheticEvent) => {
+    const value = event.target.value;
+    changeInputValue(value);
+  };
+  const handleOk = async (close: () => void) => {
+    const result = await addList(inputValue);
+    console.log('result: ', result);
+    message.success('新增成功');
+    dispatch({
+      type: 'FETCH_DATA_LIST',
+    });
+    close();
+  };
   return (
-    // <Button type="primary" onClick={addList}>
-    //   Primary
-    // </Button>
-    <AddButton btnText="新增" title="新增todoList">
-      <Input placeholder="Basic usage" />
-    </AddButton>
+    <BaseModal btnText="新增" title="新增todoList" handleOk={handleOk}>
+      <Input
+        placeholder="input with clear icon"
+        allowClear
+        value={inputValue}
+        onChange={onChange}
+      />
+    </BaseModal>
   );
-};
+});
 const mapStateToProps = (state: any) => {
   return {};
 };

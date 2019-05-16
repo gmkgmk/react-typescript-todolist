@@ -17,7 +17,9 @@ function* fetchList() {
 }
 
 function* putTodoList(action: IActionType) {
-  yield call(api.addList);
+  const { payload } = action;
+
+  yield call(api.addList, payload);
 }
 
 function* fetchStatusEnum() {

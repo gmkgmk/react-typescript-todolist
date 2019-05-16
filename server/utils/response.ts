@@ -1,8 +1,8 @@
 import * as Koa from 'koa';
 
 export interface Response {
-  msg?: string;
-  data?: any;
+  msg: string;
+  data: any;
 }
 
 /**
@@ -17,9 +17,21 @@ export interface Response {
  */
 export function response(
   ctx: Koa.Context,
-  result: Response = {},
+  result: Response,
   success: boolean = true,
   status: number = 200
+) {
+  ctx.body = {
+    success,
+    status,
+    result,
+  };
+}
+export function fail(
+  ctx: Koa.Context,
+  result: Response,
+  success: boolean = false,
+  status: number = 500
 ) {
   ctx.body = {
     success,

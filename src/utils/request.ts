@@ -18,6 +18,7 @@ const codeMessage = {
   504: '网关超时。',
 };
 function checkStatus(response) {
+  console.log('response.status: ', response);
   if (response.status >= 200 && response.status < 300) {
     return response;
   }
@@ -38,9 +39,12 @@ function checkStatus(response) {
  * @param  {object} [options] The options we want to pass to "fetch"
  * @return {object}           An object containing either "data" or "err"
  */
-export default function request(url, options) {
+export default function request(url: string, options: any) {
   const defaultOptions = {
     credentials: 'include',
+  };
+  const defaultHeader = {
+    'Content-type': 'application/json',
   };
   const newOptions = { ...defaultOptions, ...options };
   if (
@@ -49,10 +53,11 @@ export default function request(url, options) {
   ) {
     // newOptions.body is FormData
     newOptions.headers = {
+      ...defaultHeader,
       Accept: 'application/json',
-      'Content-Type': 'multipart/form-data',
       ...newOptions.headers,
     };
+    newOptions.body = JSON.stringify(newOptions.data);
   }
 
   return fetch(url, newOptions)
