@@ -1,8 +1,8 @@
 import * as Koa from 'koa';
 
 export interface Response {
-  msg: string;
-  data: any;
+  msg?: string;
+  data?: any;
 }
 
 /**

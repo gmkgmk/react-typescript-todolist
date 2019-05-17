@@ -8,6 +8,7 @@ const router = KoaRouter();
 const routers = router
   .get('/list', todoListController.getTodoList)
   .get('/statusEnum', todoListController.statusEnum)
-  .post('/add', todoListController.createList);
+  .post('/add', todoListController.createList)
+  .post('/removeList', todoListController.removeList);
 
 export default routers;

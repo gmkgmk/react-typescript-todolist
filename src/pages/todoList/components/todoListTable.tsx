@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { Table } from 'antd';
+import { Table, Popconfirm, Icon, message } from 'antd';
 import enumsTool from '@/utils/enums';
 const { useEffect } = React;
 
@@ -10,6 +10,19 @@ const TodoListTable = React.memo((props: any) => {
     dispatch({ type: 'FETCH_DATA_LIST' });
     dispatch({ type: 'ENUM_STATUS' });
   }, [dispatch]);
+
+  const remove = async (id: number) => {
+    const { success } = await dispatch({
+      type: 'REMOVE_TODO_LIST',
+      payload: {
+        id,
+      },
+    });
+    if (success) {
+      message.success('删除成功');
+      dispatch({ type: 'FETCH_DATA_LIST' });
+    }
+  };
 
   const columns = [
     {
@@ -33,9 +46,15 @@ const TodoListTable = React.memo((props: any) => {
     {
       title: '操作',
       key: 'action',
-      render: () => (
+      render: record => (
         <span>
-          <a href="javascript:;">删除</a>
+          <Popconfirm
+            title="确认删除？"
+            icon={<Icon type="question-circle-o" style={{ color: 'red' }} />}
+            onConfirm={() => remove(record.id)}
+          >
+            <a href="#">删除</a>
+          </Popconfirm>
         </span>
       ),
     },

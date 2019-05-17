@@ -2,7 +2,8 @@ import { put, call, takeEvery, takeLatest } from 'redux-saga/effects';
 import api from './services';
 interface IActionType {
   type: string;
-  payload: object;
+  payload: any;
+  next: (key?: string) => void;
 }
 
 function* fetchList() {
@@ -17,9 +18,10 @@ function* fetchList() {
 }
 
 function* putTodoList(action: IActionType) {
-  const { payload } = action;
+  const { payload, next } = action;
 
-  yield call(api.addList, payload);
+  const result = yield call(api.addList, payload);
+  next(result);
 }
 
 function* fetchStatusEnum() {
@@ -33,6 +35,12 @@ function* fetchStatusEnum() {
   });
 }
 
+function* removeTodoList(action: IActionType) {
+  const { payload, next } = action;
+  const result = yield call(api.removeList, payload);
+  next(result);
+}
+
 export function* watchTodoList() {
   yield takeEvery('FETCH_DATA_LIST', fetchList);
 }
@@ -43,4 +51,8 @@ export function* addList() {
 
 export function* statusEnum() {
   yield takeEvery('ENUM_STATUS', fetchStatusEnum);
+}
+
+export function* removeHandle() {
+  yield takeLatest('REMOVE_TODO_LIST', removeTodoList);
 }

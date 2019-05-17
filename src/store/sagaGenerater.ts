@@ -15,9 +15,8 @@ export default function* root() {
         while (true) {
           try {
             yield call(saga);
-          } catch (e) {
-            console.log(e);
-          }
+            // resolve(ret);
+          } catch (e) {}
         }
       })
     )
