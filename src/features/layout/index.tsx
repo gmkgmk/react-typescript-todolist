@@ -1,8 +1,6 @@
-// import React, { ReactChildren } from 'react';
 import * as React from 'react';
 import { Layout, Menu, Breadcrumb } from 'antd';
 
-// const { SubMenu } = Menu;
 const { Header, Content, Sider } = Layout;
 interface ITodoListComponentProps {
   children: React.ReactChild | React.ReactChildren;

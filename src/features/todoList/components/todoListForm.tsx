@@ -3,21 +3,20 @@ import { connect } from 'react-redux';
 import BaseModal from '@/components/baseModal';
 import { Input, message } from 'antd';
 import _ from 'lodash';
+import { bindActionCreators } from 'redux';
+import * as actions from '../actions';
 const { memo, useState } = React;
 const TodoListForm = memo((props: any) => {
   const [inputValue, changeInputValue] = useState('');
-  const { dispatch } = props;
+  const { actions } = props;
 
   const addList = async (value: string) => {
     if (_.isEmpty(value)) {
       message.error('内容不能为空');
       return;
     }
-    const result = await dispatch({
-      type: 'PUT_TODO_LIST',
-      payload: {
-        value,
-      },
+    const result = await actions.addTodoList({
+      value,
     });
     return result;
   };
@@ -31,9 +30,7 @@ const TodoListForm = memo((props: any) => {
     const { success } = await addList(inputValue);
     if (success) {
       message.success('新增成功');
-      dispatch({
-        type: 'FETCH_DATA_LIST',
-      });
+      actions.fetchTodoList();
       changeInputValue('');
       close();
     }
@@ -49,10 +46,18 @@ const TodoListForm = memo((props: any) => {
     </BaseModal>
   );
 });
-
 const mapStateToProps = (state: any) => {
   return {};
 };
 
-const TodoListFormPage = connect(mapStateToProps)(TodoListForm);
-export default TodoListFormPage;
+/* istanbul ignore next */
+function mapDispatchToProps(dispatch) {
+  return {
+    actions: bindActionCreators({ ...actions }, dispatch),
+  };
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(TodoListForm);

@@ -2,14 +2,16 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { Table, Popconfirm, Icon, message } from 'antd';
 import enumsTool from '@/utils/enums';
+import { bindActionCreators } from 'redux';
+import * as actions from '../actions';
 const { useEffect } = React;
 
 const TodoListTable = React.memo((props: any) => {
-  const { list, dispatch, statusEnum } = props;
+  const { actions, dispatch, list, statusEnum } = props;
   useEffect(() => {
-    dispatch({ type: 'FETCH_DATA_LIST' });
-    dispatch({ type: 'ENUM_STATUS' });
-  }, [dispatch]);
+    actions.fetchTodoList();
+    actions.fetchStatusEnum();
+  }, [actions]);
 
   const remove = async (id: number) => {
     const { success } = await dispatch({
@@ -65,9 +67,19 @@ const TodoListTable = React.memo((props: any) => {
 const mapStateToProps = (state: any) => {
   const { todoList } = state;
   return {
-    ...todoList,
+    list: todoList.list,
+    statusEnum: todoList.statusEnum,
   };
 };
 
-const TodoListTableComponent = connect(mapStateToProps)(TodoListTable);
-export default TodoListTableComponent;
+/* istanbul ignore next */
+function mapDispatchToProps(dispatch) {
+  return {
+    actions: bindActionCreators({ ...actions }, dispatch),
+  };
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(TodoListTable);

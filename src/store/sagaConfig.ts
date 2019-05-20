@@ -1,5 +1,5 @@
 import { spawn, call, all } from 'redux-saga/effects';
-import * as todoList from '@/pages/todoList/saga';
+import * as todoList from '@/features/todoList/sagas';
 export default function* root() {
   const sagas = { ...todoList };
   const rootSaga = [];
@@ -15,7 +15,6 @@ export default function* root() {
         while (true) {
           try {
             yield call(saga);
-            // resolve(ret);
           } catch (e) {}
         }
       })

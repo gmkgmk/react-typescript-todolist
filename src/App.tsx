@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-import Layout from './layout/index';
-import TodoList from './pages/todoList/index';
+
+import Layout from './features/layout';
+import TodoList from './features/todoList/todoList';
+
 import zhCN from 'antd/lib/locale-provider/zh_CN';
 import { LocaleProvider } from 'antd';
 class App extends Component {
@@ -16,5 +18,4 @@ class App extends Component {
     );
   }
 }
-
 export default App;
