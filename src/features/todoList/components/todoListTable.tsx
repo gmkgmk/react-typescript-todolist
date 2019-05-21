@@ -7,22 +7,19 @@ import * as actions from '../actions';
 const { useEffect } = React;
 
 const TodoListTable = React.memo((props: any) => {
-  const { actions, dispatch, list, statusEnum } = props;
+  const { actions, list, statusEnum } = props;
   useEffect(() => {
     actions.fetchTodoList();
     actions.fetchStatusEnum();
   }, [actions]);
 
   const remove = async (id: number) => {
-    const { success } = await dispatch({
-      type: 'REMOVE_TODO_LIST',
-      payload: {
-        id,
-      },
+    const { success } = await actions.removeTodoList({
+      id,
     });
     if (success) {
       message.success('删除成功');
-      dispatch({ type: 'FETCH_DATA_LIST' });
+      actions.fetchTodoList();
     }
   };
 
@@ -72,7 +69,6 @@ const mapStateToProps = (state: any) => {
   };
 };
 
-/* istanbul ignore next */
 function mapDispatchToProps(dispatch) {
   return {
     actions: bindActionCreators({ ...actions }, dispatch),

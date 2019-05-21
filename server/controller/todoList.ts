@@ -57,6 +57,6 @@ export const removeList = async ctx => {
 
   if (!result) return;
   const { id } = body;
-  deleteListById({ id });
+  deleteListById(id);
   response(ctx, { msg: '删除成功' });
 };

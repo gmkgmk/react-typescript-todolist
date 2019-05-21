@@ -13,7 +13,8 @@ export const findAllList = () => {
 
 export const deleteListById = (id: number) => {
   const index = todoList.findIndex(e => e.id === id);
-  if (index) {
+
+  if (index !== -1) {
     todoList.splice(index, 1);
     return true;
   }
