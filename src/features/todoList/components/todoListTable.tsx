@@ -1,13 +1,13 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { Table, Popconfirm, Icon, message } from 'antd';
+import { Table, Popconfirm, Icon, message, Spin } from 'antd';
 import enumsTool from '@/utils/enums';
 import { bindActionCreators } from 'redux';
 import * as actions from '../actions';
 const { useEffect } = React;
 
 const TodoListTable = React.memo((props: any) => {
-  const { actions, list, statusEnum } = props;
+  const { actions, list, statusEnum, loading } = props;
   useEffect(() => {
     actions.fetchTodoList();
     actions.fetchStatusEnum();
@@ -59,13 +59,16 @@ const TodoListTable = React.memo((props: any) => {
     },
   ];
 
-  return <Table dataSource={list} columns={columns} rowKey="id" />;
+  return (
+    <Spin spinning={loading}>
+      <Table dataSource={list} columns={columns} rowKey="id" />
+    </Spin>
+  );
 });
 const mapStateToProps = (state: any) => {
   const { todoList } = state;
   return {
-    list: todoList.list,
-    statusEnum: todoList.statusEnum,
+    ...todoList,
   };
 };
 

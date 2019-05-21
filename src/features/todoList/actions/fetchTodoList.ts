@@ -1,17 +1,29 @@
-import { put, call, takeLatest } from 'redux-saga/effects';
+import { put, call, takeLatest, delay } from 'redux-saga/effects';
 import { IActionType } from '@/types/reduce';
 import api from '../services';
-import { TODOLIST_FETCH_LIST, TODOLIST_FETCH_LIST_SUCCESS } from '../constants';
+import {
+  TODOLIST_FETCH_LIST,
+  TODOLIST_FETCH_LIST_SUCCESS,
+  TODOLIST_LOADING_START,
+  TODOLIST_LOADING_END,
+} from '../constants';
 
 // sagas
 export function* fetchTodoListHandle() {
   function* handle() {
+    yield put({
+      type: TODOLIST_LOADING_START,
+    });
     const { result } = yield call(api.list);
     const { data } = result;
 
     yield put({
       type: TODOLIST_FETCH_LIST_SUCCESS,
       payload: data,
+    });
+    yield delay(1000);
+    yield put({
+      type: TODOLIST_LOADING_END,
     });
   }
   yield takeLatest(TODOLIST_FETCH_LIST, handle);
