@@ -17,11 +17,11 @@ export function* fetchTodoListHandle() {
     const { result } = yield call(api.list);
     const { data } = result;
 
+    yield delay(500);
     yield put({
       type: TODOLIST_FETCH_LIST_SUCCESS,
       payload: data,
     });
-    yield delay(1000);
     yield put({
       type: TODOLIST_LOADING_END,
     });

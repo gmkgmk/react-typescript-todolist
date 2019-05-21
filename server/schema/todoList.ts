@@ -6,7 +6,7 @@ let _id = 0;
  * 1:正在进行
  * 2:结束`
  */
-export const todoListEnumData = ['开始', '正在进行', '结束'];
+export const todoListEnumData = ['未开始', '正在进行', '结束'];
 export enum todoListEnum {
   START,
   DOING,

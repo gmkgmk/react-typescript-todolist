@@ -9,6 +9,8 @@ const routers = router
   .get('/list', todoListController.getTodoList)
   .get('/statusEnum', todoListController.statusEnum)
   .post('/add', todoListController.createList)
-  .post('/removeList', todoListController.removeList);
+  .post('/removeList', todoListController.removeList)
+  .post('/updateStatus', todoListController.updateTodoListStatus)
+  .post('/updateContent', todoListController.updateTodoListContent);
 
 export default routers;

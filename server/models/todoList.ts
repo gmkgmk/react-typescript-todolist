@@ -19,3 +19,21 @@ export const deleteListById = (id: number) => {
     return true;
   }
 };
+
+export const updateStatusById = ({ id, status }) => {
+  const todoListRow = todoList.find(e => e.id === id);
+
+  if (todoListRow) {
+    todoListRow.status = status;
+    return true;
+  }
+};
+
+export const updateContentById = ({ id, content }) => {
+  const todoListRow = todoList.find(e => e.id === id);
+
+  if (todoListRow) {
+    todoListRow.content = content;
+    return true;
+  }
+};

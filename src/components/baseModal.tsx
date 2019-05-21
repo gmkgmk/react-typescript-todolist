@@ -8,13 +8,14 @@ interface IModelProps {
   /** 标题 */
   title?: React.ReactNode | string;
   children?: React.ReactNode;
+  type?: 'primary' | 'ghost' | 'default' | 'dashed' | 'danger';
   /** 确定按钮 loading */
   loading?: boolean;
   /** 是否显示右上角的关闭按钮 */
   closable?: boolean;
   footer?: [React.ReactNode] | null;
   width?: string | number;
-  handleOk?: (close: () => void) => {};
+  handleOk?: (e: MouseEvent<any, MouseEvent>) => void | undefined;
   handleCancel?: (close: () => void) => {};
 }
 
@@ -27,6 +28,7 @@ export default memo((props: IModelProps) => {
     loading = false,
     closable = false,
     footer,
+    type = 'primary',
     width = 520,
     handleOk,
     handleCancel,
@@ -61,9 +63,9 @@ export default memo((props: IModelProps) => {
     </Button>,
   ];
   return (
-    <div>
+    <>
       <Button
-        type="primary"
+        type={type}
         onClick={() => {
           toggleVisible(true);
         }}
@@ -82,6 +84,6 @@ export default memo((props: IModelProps) => {
       >
         {React.Children.only(children)}
       </Modal>
-    </div>
+    </>
   );
 });
