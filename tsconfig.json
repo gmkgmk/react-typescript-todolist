@@ -18,8 +18,8 @@
     "jsx": "react",
     "baseUrl": ".",
     "paths": {
-      "@": ["/src"],
-      "@utils": ["/src/utils"]
+      "@/*": ["./src/*"],
+      "@utils/*": ["./src/utils/*"]
     }
   },
   "include": ["./src", "types/types.d.ts", "src/layout/.tsx"],

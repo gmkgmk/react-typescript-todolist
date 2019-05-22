@@ -12,6 +12,7 @@ module.exports = {
   },
   devtool: 'cheap-module-eval-source-maps', // 开启调试
   output: {
+    publicPath : '/',
     filename: '[name].bundle.js', // 代码打包后的文件名
     chunkFilename: '[name].js', // 代码拆分后的文件名
     path: path.resolve(__dirname, '..', 'dist'),
@@ -120,7 +121,6 @@ module.exports = {
       filename: '[name].css',
       chunkFilename: '[id].css',
     }),
-
   ],
 
   devServer: {
@@ -139,9 +139,6 @@ module.exports = {
         },
       },
     },
-    historyApiFallback: {
-      // HTML5 history模式
-      rewrites: [{ from: /.*/, to: '/index.html' }],
-    },
+    historyApiFallback: true,
   },
 };
