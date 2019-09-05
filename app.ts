@@ -1,4 +1,3 @@
-// const Koa =
 import Koa from 'koa';
 import logger from 'koa-logger';
 import koaBodyparser from 'koa-bodyparser';

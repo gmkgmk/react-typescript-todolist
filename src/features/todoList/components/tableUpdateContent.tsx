@@ -2,29 +2,34 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import BaseModal from '@/components/baseModal';
 import { Input } from 'antd';
-import { bindActionCreators } from 'redux';
+import { bindActionCreators, Dispatch } from 'redux';
 import * as actions from '../actions';
 const { memo, useState } = React;
 
-const TodoListUpdateContent = memo((props: any) => {
+interface IProps {
+  content: string;
+  id: number;
+  actions: any;
+}
+const TodoListUpdateContent = memo((props: IProps) => {
   const { content: defaultContent, id, actions } = props;
   const [content, setContent] = useState(defaultContent);
-  const handleOk = async close => {
+  const handleOk = async (close?: () => void) => {
     const { success } = await actions.updateContent({
       id,
       content,
     });
     if (success) {
       actions.fetchTodoList();
-      close();
+      close && close();
     }
   };
-  const handleCancel = close => {
+  const handleCancel = (close?: () => void) => {
     setContent(defaultContent);
-    close();
+    close && close();
   };
 
-  const onChangeHandle = event => {
+  const onChangeHandle = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
     setContent(value);
   };
@@ -48,7 +53,7 @@ const mapStateToProps = (state: any) => {
 };
 
 /* istanbul ignore next */
-function mapDispatchToProps(dispatch) {
+function mapDispatchToProps(dispatch: Dispatch) {
   return {
     actions: bindActionCreators({ ...actions }, dispatch),
   };

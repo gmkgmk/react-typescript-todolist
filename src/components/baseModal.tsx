@@ -1,89 +1,88 @@
 import * as React from 'react';
 import { Button, Modal } from 'antd';
+import { ModalProps } from 'antd/lib/modal';
+
 const { memo, useState } = React;
 
-interface IModelProps {
+interface IModelProps extends ModalProps {
   /** 按钮文字 */
   btnText?: string;
   /** 标题 */
   title?: React.ReactNode | string;
   children?: React.ReactNode;
-  type?: 'primary' | 'ghost' | 'default' | 'dashed' | 'danger';
+  type?: 'primary' | 'ghost' | 'default' | 'dashed' | 'danger' | 'link';
   /** 确定按钮 loading */
   loading?: boolean;
   /** 是否显示右上角的关闭按钮 */
   closable?: boolean;
   footer?: [React.ReactNode] | null;
   width?: string | number;
-  handleOk?: (e: MouseEvent<any, MouseEvent>) => void | undefined;
-  handleCancel?: (close: () => void) => {};
+  handleOk: (close?: () => void) => Promise<void>;
+  handleCancel?: (
+    close?: () => void,
+    e?: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => void;
 }
 
-export default memo((props: IModelProps) => {
-  const modalEL = React.useRef(null);
-  const {
-    btnText,
-    children,
-    title,
-    loading = false,
-    closable = false,
-    footer,
-    type = 'primary',
-    width = 520,
-    handleOk,
-    handleCancel,
-  } = props;
-  const [visible, toggleVisible] = useState(false);
-  const close = () => toggleVisible(false);
-  const handleOkFunc = () => {
-    if (handleOk) {
-      handleOk(close);
-    } else {
-      close();
-    }
-  };
-  const handleCancelHandle = () => {
-    if (handleCancel) {
-      handleCancel(close);
-    } else {
-      close();
-    }
-  };
-  const defaultFooter = [
-    <Button key="back" onClick={handleCancelHandle}>
-      取消
-    </Button>,
-    <Button
-      key="submit"
-      type="primary"
-      loading={loading}
-      onClick={handleOkFunc}
-    >
-      确认
-    </Button>,
-  ];
-  return (
-    <>
+export default memo(
+  (props: IModelProps): React.ReactElement => {
+    const modalEL = React.useRef<Modal>(null);
+    const {
+      btnText,
+      children,
+      title,
+      loading = false,
+      closable = false,
+      footer,
+      type = 'primary',
+      width = 520,
+      handleOk,
+      handleCancel,
+    } = props;
+    const [visible, toggleVisible] = useState(false);
+    const close: () => void = () => toggleVisible(false);
+    const handleOkFunc: () => void = () => {
+      handleOk ? handleOk(close) : close();
+    };
+    const handleCancelHandle: () => void = () => {
+      handleCancel ? handleCancel(close) : close();
+    };
+    const defaultFooter: React.ReactElement[] = [
+      <Button key="back" onClick={handleCancelHandle}>
+        取消
+      </Button>,
       <Button
-        type={type}
-        onClick={() => {
-          toggleVisible(true);
-        }}
+        key="submit"
+        type="primary"
+        loading={loading}
+        onClick={handleOkFunc}
       >
-        {btnText}
-      </Button>
-      <Modal
-        width={width}
-        closable={closable}
-        footer={footer === undefined ? defaultFooter : footer}
-        title={title}
-        visible={visible}
-        onOk={handleOk}
-        onCancel={handleCancelHandle}
-        ref={modalEL}
-      >
-        {React.Children.only(children)}
-      </Modal>
-    </>
-  );
-});
+        确认
+      </Button>,
+    ];
+    return (
+      <>
+        <Button
+          type={type}
+          onClick={() => {
+            toggleVisible(true);
+          }}
+        >
+          {btnText}
+        </Button>
+        <Modal
+          width={width}
+          closable={closable}
+          footer={footer === undefined ? defaultFooter : footer}
+          title={title}
+          visible={visible}
+          onOk={() => handleOk()}
+          onCancel={handleCancelHandle}
+          ref={modalEL}
+        >
+          {React.Children.only(children)}
+        </Modal>
+      </>
+    );
+  }
+);

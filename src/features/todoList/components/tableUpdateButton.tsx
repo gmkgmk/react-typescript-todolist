@@ -2,29 +2,46 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import BaseModal from '@/components/baseModal';
 import { Radio } from 'antd';
-import { bindActionCreators } from 'redux';
+import { bindActionCreators, Dispatch } from 'redux';
 import * as actions from '../actions';
+import { RadioChangeEvent } from 'antd/lib/radio';
 const { memo, useState } = React;
 
-const TodoListUpdateStatusButton = memo((props: any) => {
+interface IProps {
+  statusEnum: Record<string, any>;
+  status: string;
+  id: number;
+  actions: {
+    fetchTodoList: () => void;
+    updateStatus: ({
+      id,
+      status,
+    }: {
+      id: number;
+      status: string;
+    }) => { success: boolean };
+  };
+}
+
+const TodoListUpdateStatusButton = memo((props: IProps) => {
   const { statusEnum, status: defaultStatus, id, actions } = props;
   const [status, setStatus] = useState(defaultStatus);
-  const handleOk = async close => {
+  const handleOk = async (close?: () => void) => {
     const { success } = await actions.updateStatus({
       id,
       status,
     });
     if (success) {
       actions.fetchTodoList();
-      close();
+      close && close();
     }
   };
-  const handleCancel = close => {
+  const handleCancel = (close?: () => void) => {
     setStatus(defaultStatus);
-    close();
+    close && close();
   };
 
-  const onChangeHandle = event => {
+  const onChangeHandle = (event: RadioChangeEvent) => {
     const value = event.target.value;
     setStatus(value);
   };
@@ -46,7 +63,8 @@ const TodoListUpdateStatusButton = memo((props: any) => {
     </BaseModal>
   );
 });
-const mapStateToProps = (state: any) => {
+
+const mapStateToProps = (state: { todoList: object }) => {
   const { todoList } = state;
   return {
     ...todoList,
@@ -54,7 +72,7 @@ const mapStateToProps = (state: any) => {
 };
 
 /* istanbul ignore next */
-function mapDispatchToProps(dispatch) {
+function mapDispatchToProps(dispatch: Dispatch) {
   return {
     actions: bindActionCreators({ ...actions }, dispatch),
   };
@@ -63,4 +81,4 @@ function mapDispatchToProps(dispatch) {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(TodoListUpdateStatusButton);
+)(TodoListUpdateStatusButton as React.ComponentType<any>);

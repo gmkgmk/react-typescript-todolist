@@ -38,7 +38,7 @@ function checkStatus(response) {
  * @param  {object} [options] The options we want to pass to "fetch"
  * @return {object}           An object containing either "data" or "err"
  */
-export default function request(url: string, options: any) {
+export default function request(url: string, options?: any) {
   const defaultOptions = {
     credentials: 'include',
   };

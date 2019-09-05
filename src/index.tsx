@@ -53,5 +53,5 @@ ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>{children}</BrowserRouter>
   </Provider>,
-  document.getElementById('root')
+  document.getElementById('root') as HTMLElement
 );

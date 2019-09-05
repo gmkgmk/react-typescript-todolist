@@ -3,10 +3,16 @@ import { connect } from 'react-redux';
 import BaseModal from '@/components/baseModal';
 import { Input, message } from 'antd';
 import _ from 'lodash';
-import { bindActionCreators } from 'redux';
+import { bindActionCreators, Dispatch } from 'redux';
 import * as actions from '../actions';
 const { memo, useState } = React;
-const TodoListForm = memo((props: any) => {
+interface IActionProps {
+  actions: {
+    addTodoList: ({ value }: { value: string }) => Promise<any>;
+    fetchTodoList: () => void;
+  };
+}
+const TodoListForm = memo((props: IActionProps) => {
   const [inputValue, changeInputValue] = useState('');
   const { actions } = props;
 
@@ -26,13 +32,13 @@ const TodoListForm = memo((props: any) => {
     changeInputValue(value);
   };
   // 确定按钮动作
-  const handleOk = async (close: () => void) => {
+  const handleOk = async (close?: () => void) => {
     const { success } = await addList(inputValue);
     if (success) {
       message.success('新增成功');
       actions.fetchTodoList();
       changeInputValue('');
-      close();
+      close && close();
     }
   };
   return (
@@ -46,12 +52,12 @@ const TodoListForm = memo((props: any) => {
     </BaseModal>
   );
 });
-const mapStateToProps = (state: any) => {
+const mapStateToProps = () => {
   return {};
 };
 
 /* istanbul ignore next */
-function mapDispatchToProps(dispatch) {
+function mapDispatchToProps(dispatch: Dispatch) {
   return {
     actions: bindActionCreators({ ...actions }, dispatch),
   };
@@ -60,4 +66,4 @@ function mapDispatchToProps(dispatch) {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(TodoListForm);
+)(TodoListForm as React.ComponentType<any>);

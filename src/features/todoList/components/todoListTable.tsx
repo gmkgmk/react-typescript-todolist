@@ -2,7 +2,7 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { Table, Popconfirm, Icon, message, Spin, Button, Badge } from 'antd';
 import enumsTool from '@/utils/enums';
-import { bindActionCreators } from 'redux';
+import { bindActionCreators, Dispatch } from 'redux';
 import * as actions from '../actions';
 import TableUpdateButton from './tableUpdateButton';
 import TableUpdateContent from './TableUpdateContent';
@@ -85,7 +85,7 @@ const mapStateToProps = (state: any) => {
   };
 };
 
-function mapDispatchToProps(dispatch) {
+function mapDispatchToProps(dispatch: Dispatch) {
   return {
     actions: bindActionCreators({ ...actions }, dispatch),
   };
